@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Affiliate Programs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='12' width='5' height='16' fill='%234a90e2' rx='1'/><rect x='13' y='6' width='5' height='22' fill='%234a90e2' rx='1'/><rect x='22' y='18' width='5' height='10' fill='%234a90e2' rx='1'/></svg>">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Danh Sách Affiliate Programs</h1>
+            <div class="header-info">
+                <div class="info-item">
+                    <strong>Tổng:</strong> <span id="total-count">0</span> dự án
+                </div>
+                <div class="info-item">
+                    <strong>Hiển thị:</strong> <span id="display-count">0</span> dự án
+                </div>
+                <div class="info-item">
+                    <strong>Loại tiền tệ:</strong> <span id="currency-count">Không có</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Hiển thị:</label>
+                <select id="pageSize">
+                    <option value="20">20</option>
+                    <option value="50" selected>50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Tiền tệ:</label>
+                <select id="currencyFilter">
+                    <option value="">Tất cả</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Tìm kiếm:</label>
+                <input type="text" id="searchBox" placeholder="Nhập tên dự án...">
+            </div>
+
+            <div class="control-group">
+                <label>Trạng thái:</label>
+                <select id="statusFilter">
+                    <option value="">Tất cả</option>
+                    <option value="success">✓ Đã duyệt</option>
+                    <option value="pending">◐ Đang chờ</option>
+                    <option value="reject">✕ Không ok</option>
+                </select>
+            </div>
+
+            <button class="btn btn-secondary" onclick="resetFilters()">↻ Reset</button>
+            <button class="btn btn-primary" onclick="exportData()">⬇ Export JSON</button>
+        </div>
+
+        <div class="table-wrapper">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th class="sortable" onclick="sortTable('id')">STT</th>
+                        <th>Logo</th>
+                        <th class="sortable" onclick="sortTable('name')">Tên Dự Án</th>
+                        <th class="sortable" onclick="sortTable('myshopify_domain')">Website</th>
+                        <th class="sortable" onclick="sortTable('payout_rate')">Tỷ Lệ Thanh Toán</th>
+                        <th class="sortable" onclick="sortTable('currency')">Tiền Tệ</th>
+                        <th class="sortable" onclick="sortTable('commission')">Hoa Hồng</th>
+                        <th class="sortable" onclick="sortTable('cookie')">Cookie</th>
+                        <th>Kỳ Thanh Toán</th>
+                        <th class="sortable" onclick="sortTable('application_review')">Xem Xét</th>
+                        <th>Trạng Thái</th>
+                        <th>Link Aff</th>
+                        <th>Chi Tiết</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+
+        <div class="footer">
+            <p>Dữ liệu được cập nhật lần cuối: <span id="updateTime"></span></p>
+        </div>
+    </div>
+
+    <!-- Modal Chi Tiết -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Modal Kỳ Thanh Toán -->
+    <div id="periodModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <span class="close" onclick="closePeriodModal()">&times;</span>
+            <h2>Kỳ Thanh Toán</h2>
+            <div id="periodModalBody" style="font-size: 15px; color: #666; line-height: 1.6;"></div>
+        </div>
+    </div>
+
+    <script src="app-v2.js"></script>
+</body>
+</html>
