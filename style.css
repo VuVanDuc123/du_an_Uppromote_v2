@@ -247,15 +247,15 @@ tbody tr:nth-child(even):hover {
 }
 
 tbody tr.status-success {
-    background-color: rgba(34, 197, 94, 0.15) !important;
+    background-color: rgba(34, 197, 94, 0.35) !important;
 }
 
 tbody tr.status-pending {
-    background-color: rgba(234, 179, 8, 0.15) !important;
+    background-color: rgba(234, 179, 8, 0.35) !important;
 }
 
 tbody tr.status-reject {
-    background-color: rgba(31, 41, 55, 0.15) !important;
+    background-color: rgba(31, 41, 55, 0.35) !important;
 }
 
 .logo-cell {
