@@ -367,7 +367,7 @@ tbody tr.status-reject {
     cursor: pointer;
     font-size: 13px;
     color: #666;
-    min-width: 120px;
+    width: 130px;
 }
 
 .status-select:focus {
