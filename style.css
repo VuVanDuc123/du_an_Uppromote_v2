@@ -306,6 +306,20 @@ tbody tr.status-reject {
     display: inline-block;
 }
 
+.recommend-badge {
+    background: #fce4ec;
+    color: #ad1457;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.recommend-badge-plain {
+    background: #f8bbd0;
+    font-size: 12px;
+}
+
 .cookie-badge {
     background: #f3e5f5;
     color: #6a1b9a;
