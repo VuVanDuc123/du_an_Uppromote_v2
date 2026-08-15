@@ -4,13 +4,17 @@
     box-sizing: border-box;
 }
 
+button, input, select, textarea {
+    font-family: inherit;
+}
+
 html, body {
     height: 100%;
     margin: 0;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 20px 100px;
     overflow: hidden;
@@ -60,6 +64,19 @@ body {
     text-overflow: ellipsis;
 }
 
+.toggle-controls-btn {
+    display: none;
+    width: 100%;
+    padding: 8px;
+    background: #f0f0f0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    color: #555;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
 .controls {
     background: #f9f9f9;
     padding: 20px 30px;
@@ -68,6 +85,10 @@ body {
     gap: 20px;
     flex-wrap: wrap;
     align-items: center;
+}
+
+.controls.collapsed {
+    display: none;
 }
 
 .control-group {
@@ -80,6 +101,47 @@ body {
     font-weight: 600;
     color: #333;
     font-size: 14px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.column-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.column-chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #999;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.column-chip:hover {
+    border-color: #FFD700;
+}
+
+.column-chip.active {
+    background: #fff3d6;
+    border-color: #FFD700;
+    color: #b8860b;
+    font-weight: 600;
 }
 
 select, input[type="text"], input[type="number"] {
@@ -187,6 +249,70 @@ select:focus, input[type="text"]:focus {
     }
 }
 
+/* Điện thoại (dưới 600px) */
+@media (max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+    .toggle-controls-btn {
+        display: block;
+    }
+    .header {
+        padding: 15px;
+    }
+    .header h1 {
+        font-size: 19px;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    .header-info {
+        flex-direction: column;
+        gap: 6px;
+        font-size: 13px;
+    }
+    .info-item {
+        width: auto;
+        overflow: visible;
+        text-overflow: unset;
+        white-space: normal;
+    }
+    .info-item-currency {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+    }
+    .controls {
+        padding: 12px 15px;
+        gap: 8px;
+    }
+    .control-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        flex: 1 1 calc(50% - 4px);
+        min-width: 130px;
+    }
+    .control-group-search {
+        flex-basis: 100%;
+    }
+    .control-group-checkbox {
+        flex-basis: 100%;
+    }
+    .control-group-checkbox .checkbox-label {
+        white-space: nowrap;
+    }
+    .control-group select, .control-group input {
+        width: 100% !important;
+    }
+    .controls > .btn {
+        flex: 1 1 calc(33.333% - 6px);
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -279,6 +405,11 @@ tbody tr.status-reject {
     overflow-wrap: break-word;
 }
 
+.rate-badge, .commission-badge, .currency-badge, .recommend-badge, .orders-badge,
+.approval-badge, .coupon-badge, .cookie-badge, .review-auto, .review-manual {
+    white-space: nowrap;
+}
+
 .rate-badge {
     background: #e8f5e9;
     color: #2e7d32;
@@ -320,6 +451,41 @@ tbody tr.status-reject {
     font-size: 12px;
 }
 
+.orders-badge {
+    background: #fff3e0;
+    color: #bf360c;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.approval-badge {
+    background: #e0f2f1;
+    color: #00695c;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.coupon-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.coupon-yes {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.coupon-no {
+    background: #ffebee;
+    color: #c62828;
+}
+
 .cookie-badge {
     background: #f3e5f5;
     color: #6a1b9a;
@@ -350,9 +516,11 @@ tbody tr.status-reject {
 .period-text {
     color: #666;
     font-size: 13px;
-    width: 250px;
+    width: 270px;
+    max-width: 270px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
     cursor: pointer;
     text-decoration: underline dotted #999;
 }
@@ -407,6 +575,65 @@ tbody tr.status-reject {
     border-color: #000;
 }
 
+.test-select {
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    font-size: 13px;
+    color: #666;
+    width: 140px;
+    vertical-align: middle;
+}
+
+.test-select:focus {
+    outline: none;
+    border-color: #FFD700;
+}
+
+.test-select.good {
+    background: #22c55e;
+    color: white;
+    border-color: #16a34a;
+}
+
+.test-select.bad {
+    background: #ef4444;
+    color: white;
+    border-color: #dc2626;
+}
+
+.note-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+td[data-col="test_result"] {
+    white-space: nowrap;
+}
+
+.test-note-textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.modal-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
 option {
     padding: 8px;
 }
@@ -426,11 +653,21 @@ option[value="reject"] {
     color: white;
 }
 
+option[value="good"] {
+    background: #22c55e;
+    color: white;
+}
+
+option[value="bad"] {
+    background: #ef4444;
+    color: white;
+}
+
 .link-aff {
     color: #0066cc;
     text-decoration: none;
     font-weight: 500;
-    word-break: break-all;
+    white-space: nowrap;
     font-size: 13px;
 }
 

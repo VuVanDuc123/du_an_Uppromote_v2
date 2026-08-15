@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh Sách Affiliate Programs</title>
-    <link rel="stylesheet" href="style.css?v=1786820808">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1786828563">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='12' width='5' height='16' fill='%234a90e2' rx='1'/><rect x='13' y='6' width='5' height='22' fill='%234a90e2' rx='1'/><rect x='22' y='18' width='5' height='10' fill='%234a90e2' rx='1'/></svg>">
 </head>
 <body>
@@ -18,13 +21,15 @@
                 <div class="info-item">
                     <strong>Hiển thị:</strong> <span id="display-count">0</span> dự án
                 </div>
-                <div class="info-item">
+                <div class="info-item info-item-currency">
                     <strong>Loại tiền tệ:</strong> <span id="currency-count">Không có</span>
                 </div>
             </div>
         </div>
 
-        <div class="controls">
+        <button id="toggleControlsBtn" class="toggle-controls-btn" onclick="toggleControls()">▲ Ẩn bộ lọc</button>
+
+        <div class="controls" id="controlsPanel">
             <div class="control-group">
                 <label>Hiển thị:</label>
                 <select id="pageSize">
@@ -41,7 +46,7 @@
                 </select>
             </div>
 
-            <div class="control-group">
+            <div class="control-group control-group-search">
                 <label>Tìm kiếm:</label>
                 <input type="text" id="searchBox" placeholder="Nhập tên dự án...">
             </div>
@@ -56,31 +61,45 @@
                 </select>
             </div>
 
+            <div class="control-group">
+                <label>Đơn 7 ngày tối thiểu:</label>
+                <input type="number" id="minOrdersFilter" placeholder="VD: 100" min="0" style="width: 110px;">
+            </div>
+
+            <div class="control-group control-group-checkbox">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="recommendedOnlyFilter">
+                    Chỉ dự án Đề xuất
+                </label>
+            </div>
+
             <button class="btn btn-secondary" onclick="resetFilters()">↻ Reset</button>
             <button class="btn btn-primary" onclick="exportData()">⬇ Export JSON</button>
+            <button class="btn btn-secondary" onclick="openColumnModal()">⚙ Cột hiển thị</button>
         </div>
 
         <div class="table-wrapper">
             <table id="dataTable">
                 <thead>
                     <tr>
-                        <th class="sortable" onclick="sortTable('id')">STT</th>
-                        <th>Logo</th>
-                        <th class="sortable" onclick="sortTable('name')">Tên Dự Án</th>
-                        <th class="sortable" onclick="sortTable('recommend_score')">Điểm Đề Xuất</th>
-                        <th class="sortable" onclick="sortTable('total_order_last_seven_day')">Đơn 7 Ngày</th>
-                        <th class="sortable" onclick="sortTable('approval_rate')">Tỷ Lệ Duyệt</th>
-                        <th>Coupon</th>
-                        <th class="sortable" onclick="sortTable('myshopify_domain')">Website</th>
-                        <th class="sortable" onclick="sortTable('payout_rate')">Tỷ Lệ Thanh Toán</th>
-                        <th class="sortable" onclick="sortTable('currency')">Tiền Tệ</th>
-                        <th class="sortable" onclick="sortTable('commission')">Hoa Hồng</th>
-                        <th class="sortable" onclick="sortTable('cookie')">Cookie</th>
-                        <th>Kỳ Thanh Toán</th>
-                        <th class="sortable" onclick="sortTable('application_review')">Xem Xét</th>
-                        <th>Trạng Thái</th>
-                        <th>Link Aff</th>
-                        <th>Chi Tiết</th>
+                        <th data-col="id" class="sortable" onclick="sortTable('id')">STT</th>
+                        <th data-col="logo">Logo</th>
+                        <th data-col="name" class="sortable" onclick="sortTable('name')">Tên Dự Án</th>
+                        <th data-col="recommend_score" class="sortable" onclick="sortTable('recommend_score')">Điểm Đề Xuất</th>
+                        <th data-col="total_order_last_seven_day" class="sortable" onclick="sortTable('total_order_last_seven_day')">Đơn 7 Ngày</th>
+                        <th data-col="approval_rate" class="sortable" onclick="sortTable('approval_rate')">Tỷ Lệ Duyệt</th>
+                        <th data-col="enable_coupon">Coupon</th>
+                        <th data-col="myshopify_domain" class="sortable" onclick="sortTable('myshopify_domain')">Website</th>
+                        <th data-col="payout_rate" class="sortable" onclick="sortTable('payout_rate')">Tỷ Lệ Thanh Toán</th>
+                        <th data-col="currency" class="sortable" onclick="sortTable('currency')">Tiền Tệ</th>
+                        <th data-col="commission" class="sortable" onclick="sortTable('commission')">Hoa Hồng</th>
+                        <th data-col="cookie" class="sortable" onclick="sortTable('cookie')">Cookie</th>
+                        <th data-col="payout_period">Kỳ Thanh Toán</th>
+                        <th data-col="application_review" class="sortable" onclick="sortTable('application_review')">Xem Xét</th>
+                        <th data-col="test_result">Đã Test</th>
+                        <th data-col="status">Trạng Thái</th>
+                        <th data-col="apply_url">Link Aff</th>
+                        <th data-col="detail">Chi Tiết</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -104,6 +123,20 @@
         </div>
     </div>
 
+    <!-- Modal Cột Hiển Thị -->
+    <div id="columnModal" class="modal">
+        <div class="modal-content" style="max-width: 450px;">
+            <span class="close" onclick="closeModal('columnModal')">&times;</span>
+            <h2>Cột Hiển Thị</h2>
+            <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Bấm để bật/tắt cột hiển thị trong bảng</p>
+            <div class="column-panel" id="columnPanel"></div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="resetColumnVisibility()">↻ Reset mặc định</button>
+                <button class="btn btn-primary" onclick="closeModal('columnModal')">OK</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Kỳ Thanh Toán -->
     <div id="periodModal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
@@ -113,6 +146,18 @@
         </div>
     </div>
 
-    <script src="app-v2.js?v=1786820808"></script>
+    <!-- Modal Ghi Chú Test -->
+    <div id="testNoteModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <span class="close" onclick="closeModal('testNoteModal')">&times;</span>
+            <h2>Ghi Chú Kết Quả Test</h2>
+            <textarea id="testNoteTextarea" class="test-note-textarea" rows="5" placeholder="VD: ra đơn tốt, sau đó CPC tăng cao nên dừng"></textarea>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="saveTestNote()">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app-v2.js?v=1786828563"></script>
 </body>
 </html>
