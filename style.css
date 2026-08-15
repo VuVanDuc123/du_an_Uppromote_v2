@@ -343,17 +343,6 @@ tbody tr.status-reject {
     text-decoration: underline dotted #999;
 }
 
-.period-truncated {
-    display: inline;
-    cursor: pointer;
-    color: #0066cc;
-    text-decoration: underline;
-}
-
-.period-truncated:hover {
-    color: #0052a3;
-}
-
 .expand-btn {
     background: none;
     border: none;
