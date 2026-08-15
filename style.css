@@ -450,6 +450,12 @@ option[value="reject"] {
     text-decoration: underline;
 }
 
+.domain-link-full {
+    max-width: none;
+    white-space: normal;
+    word-break: break-all;
+}
+
 .btn-detail {
     background: #2196F3;
     color: white;
