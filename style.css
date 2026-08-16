@@ -405,113 +405,28 @@ tbody tr.status-reject {
     overflow-wrap: break-word;
 }
 
-.rate-badge, .commission-badge, .currency-badge, .recommend-badge, .orders-badge,
-.approval-badge, .coupon-badge, .cookie-badge, .review-auto, .review-manual {
+.rate-badge, .commission-badge, .currency-badge, .recommend-badge, .offer-score-badge,
+.orders-badge, .approval-badge, .coupon-badge, .cookie-badge, .review-auto, .review-manual {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
     white-space: nowrap;
 }
 
-.rate-badge {
-    background: #e8f5e9;
-    color: #2e7d32;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.commission-badge {
-    background: #fff3e0;
-    color: #e65100;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.currency-badge {
-    background: #e3f2fd;
-    color: #1565c0;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.recommend-badge {
-    background: #fce4ec;
-    color: #ad1457;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.recommend-badge-plain {
-    background: #f8bbd0;
-    font-size: 12px;
-}
-
-.orders-badge {
-    background: #fff3e0;
-    color: #bf360c;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-    display: inline-block;
-}
-
-.approval-badge {
-    background: #e0f2f1;
-    color: #00695c;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.coupon-badge {
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.coupon-yes {
-    background: #e8f5e9;
-    color: #2e7d32;
-}
-
-.coupon-no {
-    background: #ffebee;
-    color: #c62828;
-}
-
-.cookie-badge {
-    background: #f3e5f5;
-    color: #6a1b9a;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.review-auto {
-    background: #c8e6c9;
-    color: #1b5e20;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.review-manual {
-    background: #ffe0b2;
-    color: #e65100;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    display: inline-block;
-}
+.rate-badge { background: #e8f5e9; color: #2e7d32; }
+.commission-badge { background: #fff3e0; color: #e65100; }
+.currency-badge { background: #e3f2fd; color: #1565c0; }
+.recommend-badge { background: #fce4ec; color: #ad1457; }
+.recommend-badge-plain { background: #f8bbd0; font-size: 12px; }
+.offer-score-badge { background: #ede7f6; color: #5e35b1; }
+.orders-badge { background: #fff3e0; color: #bf360c; font-weight: 700; }
+.approval-badge { background: #e0f2f1; color: #00695c; }
+.coupon-yes { background: #e8f5e9; color: #2e7d32; }
+.coupon-no { background: #ffebee; color: #c62828; }
+.cookie-badge { background: #f3e5f5; color: #6a1b9a; }
+.review-auto { background: #c8e6c9; color: #1b5e20; }
+.review-manual { background: #ffe0b2; color: #e65100; }
 
 .period-text {
     color: #666;
